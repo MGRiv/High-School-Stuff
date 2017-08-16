@@ -1,0 +1,25 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <errno.h>
+#include <fcntl.h>
+
+int main(){
+  char inpu[256];
+  printf("What would you like to do?: \n");
+  fgets(inpu,i,stdin);
+  if(inpu != NULL){
+    if(inpu[strlen(inpu) - 1] == '\n') inpu[strlen(inpu) - 1] = '\0';
+  }
+  char *l = inpu;
+  char oupu[256];
+  int i = 0;
+  while(l){
+    oupu[i] = strsep(&l," ");
+    i++;
+  }
+  oupu[i] = "\0";
+  execvp(inpu,oupu);
+  return 0;
+}

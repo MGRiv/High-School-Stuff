@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int strlen(char *s){
+  int size = 0;
+  while(*s++)size++;
+  return size;
+}
+
+char * strcpy(char *d,char *s){
+  int i;
+  for(i = 0;i < strlen(s);i++){
+    printf("Length of blar: %c\n",*(s + i));
+    d[i] = s[i];
+  }
+  return d;
+}
+
+int main(){
+  printf("Length of blar: %d\n",strlen("abcdefghijklm"));
+  printf("Length of blar: %s\n",strcpy("Cheesecake","Carrot"));
+  return 0;
+}

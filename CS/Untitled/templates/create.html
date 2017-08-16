@@ -1,0 +1,25 @@
+{% extends "master.html" %}
+
+{% block body %}
+<div class="middleBody">
+{% if err %}
+<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Creation Failed!</strong> {{err}}
+</div>
+{% endif %}
+<h3>Creation Underway</h3>
+<form method="POST">
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" name="title">
+    </div>
+    <div class="form-group">
+        <label for="comment">Let's Start:</label>
+        <textarea maxlength="300" class="form-control" rows="5" id="comment" name="begin" onkeyup="countChar(this, 300)"></textarea>
+    You have <span id="charNum">300</span> characters left.
+    </div>
+    <button type="submit" class="btn btn-success">Create!</button>
+</form>
+</div>
+{% endblock %}

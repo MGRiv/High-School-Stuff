@@ -1,0 +1,47 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <errno.h>
+#include <string.h>
+#include <fcntl.h>
+
+static void sighandler(int signo){
+  if(signo == SIGUSR1){
+    int pid1 = fork();
+    int status;
+    if(pid1 == 0){
+      execvp("who",["who",">>","dootdoo.txt"]);
+    }else{
+      wait(&status);
+    }
+  }else if(signo == SIGUSR2){
+    int pid1 = fork();
+    int status;
+    if(pid1 == 0){
+      execvp("ps",["ps",">>","manamana.txt"]);
+    }else{
+      wait(&status);
+    }
+  }else if(signo == SIGINT){
+    int f1 = open("/dootdoo.txt",O_RDONLY);
+    int f2 = open("/manamana.txt",O_RDONLY);
+    char temp1[];
+    char temp2[];
+    read(f1,&temp1,sizeof(f1));
+    read(f2,&temp2,sizeof(f2));
+    printf("Who: %s\n",temp1);
+    printf("PS: %s\n",temp2);
+    exit(0);
+  }else{
+    exit(0);
+  }
+}
+
+int main(){
+  signal(SIGUSR1,sighandler);
+  signal(SIGUSR2,sighandler);
+  signal(SIGINT,sighandler);
+  while(1){
+    sighandler();
+  }
+}

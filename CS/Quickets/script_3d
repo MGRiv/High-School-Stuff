@@ -1,0 +1,13 @@
+#test box mesh
+box
+0 0 0 100 100 100
+ident
+xrotate
+20
+yrotate
+20
+translate
+250 250 0
+apply
+display
+quit

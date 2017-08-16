@@ -1,0 +1,88 @@
+{% extends "master.html" %}
+
+{% block body %}
+
+<div class="middleBody">
+
+
+  {% if edit %}
+  
+  <h3>{{ d["title"] }}</h3>
+    <form method="POST" action="/favorite">
+        <input type="hidden" name="storyid" value="{{id}}">
+        <input type="hidden" name="browsing" value="such ductape">
+        <button type="submit" data-toggle="tooltip"
+                                                 title="favorite/unfavorite"
+            style="margin-top:-40px;">
+            <img width="20px" 
+                 {% if favorited %}
+                    src="/static/star-filled.png"
+                 {% else %}
+                    src="/static/star-empty.png"
+                 {% endif %}
+            >
+        </button>
+    </form>
+
+    <div class="dropdown pull-right" style="margin-top:-40px;">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Contributors
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu" align="right">
+          {% for author in d["authors"] %}
+              <li><a href="#">{{ author[0] }}</a></li>
+          {% endfor %}
+      </ul>
+    </div>
+  <br>
+  <p>{{ d["story"] }}</p>
+  <br>
+  <a href="/edit/{{id}}" class="btn btn-info" role="button">Continue</a>
+{% else %}
+
+  <h3>Stories</h3>
+  <p align="right" style="margin-top:-40px;">
+    <a href="/create" class="btn btn-success">Create +</a>
+    </button>
+  </p>
+  {% for story in stories %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="/browse/stories/{{story[0]}}">
+                {{story[1]}} | <span class="text-success"> Last edited by {{ story[4] }}
+            </a>
+            <form method="POST" action="/favorite">
+                <input type="hidden" name="storyid" value="{{story[0]}}">
+                <button type="submit" class="pull-right" data-toggle="tooltip"
+                                                         title="favorite/unfavorite"
+                    style="margin-top:-23px;">
+                    <img width="20px" 
+                         {% if story[3] %}
+                            src="/static/star-filled.png"
+                         {% else %}
+                            src="/static/star-empty.png"
+                         {% endif %}
+                    >
+                </button>
+            </form>
+        </div>
+        <div class="panel-body">{{story[2]}}</div>
+    </div>
+  {% endfor %}
+ 
+  {% if pages > 1 %}
+  <ul class="pagination">
+      {% for p in range(1,pages+1) %}
+      <li
+      {% if p is sameas current %}
+      class="active"
+      {% endif %}
+      ><a href="/browse/{{p}}">{{p}}</a></li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% endif %}
+
+</div>
+
+{% endblock %}

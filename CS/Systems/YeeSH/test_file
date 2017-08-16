@@ -1,0 +1,8 @@
+ls
+ls -a -l
+who ; echo "hello"
+which vim &> output
+which bash >> output
+ls | grep execute >> output
+cat < output > output2
+exit

@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{ int val;struct node* next};
+
+void print_list(node *l){
+  while(l->next != NULL){
+    printf("%d, ",l->val);
+    l = l->next;
+  }
+}
+
+node *insert_front(node *point,int v){
+  node *n = (node *)malloc(sizeof(node));
+  n->val = v;
+  n->next = point;
+  return n;
+}
+
+node *free_list(node *point){
+  if(point->next != NULL){
+    free_list(point->next);
+    free(point);
+  }
+  return point;
+}

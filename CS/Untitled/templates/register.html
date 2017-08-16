@@ -1,0 +1,42 @@
+
+{% extends "master.html" %}
+
+{% block body %}
+
+<div class="middleBody">
+
+<h3>Sign Up</h3>
+{% if err %}
+<div class="alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Registration Failed!</strong> {{err}}
+</div>
+{% endif %}
+
+{% if success %}
+<div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Registration Successful!</strong> {{success}}
+</div>
+<script>
+window.setTimeout(function() {
+    window.location.href="login";
+}, 1000);
+</script>
+
+{% endif %}
+
+<form method="POST" role="form">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" name="username" placeholder="Username" id="username">
+    </div>
+
+    <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" name="password" placeholder="password" id="password">
+    </div>
+    <button type="submit" class="btn btn-default">Register</button>
+</form>
+</div>
+{% endblock %}

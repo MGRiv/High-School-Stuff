@@ -1,0 +1,36 @@
+{% extends "master.html" %}
+
+{% block body %}
+<div class="middleBody">
+<h3>{{ d["title"] }}</h3>
+  <br>
+  <p>{{ d["story"] }}</p>
+  <br>
+    {% if err %}
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Continuation Failed!</strong> {{err}}
+    </div>
+    {% endif %}
+
+    {% if warn %}
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Warning!</strong> {{warn}}
+    </div>
+    {% endif %}
+
+
+  <form method="POST">
+    <div class="form-group">
+        <textarea type="text" class="form-control" rows=2 maxlength="140"
+        name="next" onkeyup="countChar(this, 140)" placeholder="to be continued...">{{ original }}</textarea>
+        You have <span id="charNum">140</span> characters left.
+    </div>
+    <div class="form-group">
+        <button class="btn btn-success" type="submit">Continue the story</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

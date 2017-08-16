@@ -1,0 +1,28 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <errno.h>
+#include <time.h>
+
+int main(){
+  printf("Forking...\n");
+  int pid1 = fork();
+  if(!pid1){
+    printf("Child 1 PID: %d\n",pid1);
+    int r = 5 + rand()%15;
+    sleep(r);
+    printf("Sleep time: %d",r);
+  }else{
+    int pid2 = fork();
+    if(!pid2){
+      printf("Child 1 PID: %d\n",pid1);
+      int r = 5 + rand()%15;
+      sleep(r);
+      printf("Sleep time: %d",r);
+    }
+  }
+  if(pid1 && pid2 && (wait(&status) > 0)){
+    printf("Done\n");
+  }
+}

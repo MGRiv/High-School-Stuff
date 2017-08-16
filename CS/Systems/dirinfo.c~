@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <errno.h>
+#include <dirent.h>
+
+int main(int argc, char *argv[]){
+  DIR *f;
+  char p[256];
+  if(args - 1){
+    p = "./";
+  }else{
+    p = argv[1];
+  }
+  f = opendir(p);
+  struct stat sb = (struct stat *)malloc(sizeof(struct stat));
+  struct dirent *q;
+  q = readdir(f);
+  int s = 0;
+  while(q != NULL){
+    char path[256];
+    strcat(path,p);
+    strcat(path,q->d_name);
+    int r = stat(path,sb);
+    if (r<0){
+      printf("Error %d:%s\n",r,strerror(errno));
+    }
+    s += sb->st_size;
+    q = readdir(f);
+  }
+  rewinddir(f);
+  printf("File Statistics: %s\n",p);
+  printf("Directory Size: %d\n",s);
+  prtinf("\nDirectories:\n");
+  while(q != NULL){
+    (f->d_type==0||f->d_type==4){
+      printf("%s\n",file->d_name);
+    }
+    q = readdir(f);
+  }
+  rewinddir(f);
+  prtinf("\nRegular Files:\n");
+  while(q != NULL){
+    (f->d_type==8){
+      printf("%s\n",file->d_name);
+    }
+    q = readdir(f);
+  }
+  closedir(d);
+  free(sb);
+  return 0;
+}

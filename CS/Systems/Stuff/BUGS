@@ -1,0 +1,14 @@
+BUGS:
+  - "array element type" error in game.h (1/21)
+  - Missed some possible illegal user input (1/25)
+  - Bad client request (1/25)
+  - Global variable definition/declaration errors (1/26)
+  - Server isn't taking 2 client connections (1/26)
+  - Seg fault after connecting (1/26)
+  - Seg fault after initial board is sent (1/27)
+  - Seg fault after first instructions (1/27)
+  - Stalling (1/28)
+  - Wrong instructions are sent (1/28)
+  - Ending early. X always wins on second turn.
+  - Board displayed is always all zeros.
+  - Server/client read/write order is messed up

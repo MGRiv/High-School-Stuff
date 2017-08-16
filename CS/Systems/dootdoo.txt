@@ -1,0 +1,37 @@
+console.log("Initiate List");
+
+c = 1;
+
+var button = document.getElementById('bu');
+button.addEventListener('click',ButtonCallBack);
+
+var ButtonCallBack = function(e){
+    console.log("H");
+    c++;
+    addItem();
+};
+
+var ButtonCallBack2 = function(e){
+    console.log(e);
+    var id = this.id;
+    remItem(id);
+};
+
+var addItem = function addItem(){
+    var l = document.getElementById("dolist");
+    var i = document.getElementById("input").value;
+    var a = document.createElement("li");
+    var q = document.createElement("a");
+    q.id = c;
+    q.innerHTML = i;
+    q.addEventListener('click',ButtonCallBack2);
+    a.appendChild(q);
+    a.id = c++;
+    l.appendChild(a);
+};
+
+var remItem = function remItem(id){
+    var l = document.getElementById(c);
+    l.remove();
+};
+

@@ -1,0 +1,35 @@
+console.log("Initiate List");
+
+c = 1;
+
+var b = document.getElementById('b');
+b.addEventListener('click',ButtonCallback);
+
+var ButtonCallback = function ButtonCallback(e){
+    console.log(e);
+    addItem(document.getElementById("input").value);
+};
+
+var ClickCallback = function ClickCallback(e){
+    console.log(e);
+    var id = this.id;
+    remItem(id);
+};
+
+var addItem = function addItem(e){
+    console.log(e);
+    var l = document.getElementById("dolist");
+    var a = document.createElement("li");
+    a.setAttribute(c.toString());
+    a.innerHTML = e;
+    l.appendChild(a);
+    document.getElementById(c).addEventListener('click',ClickCallback);
+    c = c + 1;
+};
+
+var remItem = function remItem(e){
+    console.log(e);
+    var q = document.getElementById(e);
+    q.remove();
+};
+
